@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
     notify = require('gulp-notify'),
+    del = require('del'),
 
     //HTML
     pug = require('gulp-pug'),
@@ -38,7 +39,8 @@ gulp.task('browser-sync', function() {
             baseDir: dest
         }
     })
-})
+});
+
 //html
 gulp.task('pug', function () {
     return gulp.src(src + 'pug/**/!(_)*.pug')
@@ -49,6 +51,7 @@ gulp.task('pug', function () {
         .pipe(gulp.dest(dest))
         .pipe(browserSync.stream())
 });
+
 //css
 gulp.task('css', function() {
     return gulp.src(src + 'scss/**/*.scss')
@@ -64,9 +67,10 @@ gulp.task('css', function() {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(dest + 'css'))
         .pipe(browserSync.stream())
-})
+});
+
 //js
-gulp.tasks('scripts', function(done) {
+gulp.task('scripts', function() {
     return gulp.src(src + 'js/*.js')
         .pipe(concat('bundle.js'))
         .pipe(minify({
@@ -76,8 +80,8 @@ gulp.tasks('scripts', function(done) {
         }))
         .pipe(gulp.dest(dest + 'js'))
         .pipe(browserSync.stream())    
-    done();
-})
+});
+
 //img
 gulp.task('svgSprite', function () {
     return gulp.src(src + 'img/svg/sprite/**/*.svg') // svg files for sprite
@@ -105,6 +109,16 @@ gulp.task('svgSprite', function () {
         .pipe(gulp.dest(dest + 'img/svg'));
 });
 
+//fonts
+gulp.task('fonts', function() {
+    return gulp.src(src + 'fonts/*.*')
+        .pipe(gulp.dest(dest + 'fonts'))
+})
+
 
 //DEV TASKS
-gulp.task('dev', gulp.parallel('pug', 'css'))
+gulp.task('clean', function() {
+    return del(dest + '**', {force: true})
+})
+
+gulp.task('dev', gulp.parallel('pug', 'css'));
