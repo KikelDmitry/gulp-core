@@ -23,10 +23,15 @@ var gulp = require('gulp'),
 
 
     //IMG
+    //bitmap
+    imagemin = require('gulp-imagemin'),
+    imageminPngQuant = require('imagemin-pngquant'),
+    imageminZopfli = require('imagemin-zopfli'),
+
     //svg
     svgSprite = require('gulp-svg-sprite'),
     cheerio = require('gulp-cheerio'),
-    svgMin = require('gulp-svgmin'),
+    svgmin = require('gulp-svgmin'),
 
     //GLOBS
     src = 'src/',
@@ -43,7 +48,7 @@ gulp.task('browser-sync', function() {
 
 //html
 gulp.task('pug', function () {
-    return gulp.src(src + 'pug/**/!(_)*.pug')
+    return gulp.src(`${src}pug/**/!(_)*.pug`)
         .pipe(pug({
             pretty: true, //deprecated ¯\_(ツ)_/¯
             basedir: './'
@@ -54,7 +59,7 @@ gulp.task('pug', function () {
 
 //css
 gulp.task('css', function() {
-    return gulp.src(src + 'scss/**/*.scss')
+    return gulp.src(`${src}scss/**/*.scss`)
         .pipe(sourcemaps.init())
         .pipe(sass({
             outputStyle: 'compressed'
@@ -65,26 +70,52 @@ gulp.task('css', function() {
             cascade: false
         }))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(dest + 'css'))
+        .pipe(gulp.dest(`${dest}css`))
         .pipe(browserSync.stream())
 });
 
 //js
 gulp.task('scripts', function() {
-    return gulp.src(src + 'js/*.js')
+    return gulp.src(`${src}js/*.js`)
         .pipe(concat('bundle.js'))
         .pipe(minify({
             ext: {
                 min: '.min.js'
             }
         }))
-        .pipe(gulp.dest(dest + 'js'))
+        .pipe(gulp.dest(`${dest}js`))
         .pipe(browserSync.stream())    
 });
 
 //img
-gulp.task('svgSprite', function () {
-    return gulp.src(src + 'img/svg/sprite/**/*.svg') // svg files for sprite
+gulp.task('imagemin', function () {
+    return gulp.src([`${src}img/**/*.{png,jpg,jpeg,svg,gif}`, `!${src}img/svg/sprite/**/*.svg`])
+        .pipe(imagemin([
+            //png
+            imageminPngQuant({
+                speed: 1,
+                quality: [0.95, 1] //lossy settings
+            }),
+            imageminZopfli({
+                more: true
+                // iterations: 50 // very slow but more effective
+            }),
+            //jpg
+            imagemin.mozjpeg({
+                progressive: true,
+                quality: 90
+            }),
+            //svg
+            imagemin.svgo({
+                plugins: [{
+                    removeViewBox: false
+                }]
+            })
+        ]))
+        .pipe(gulp.dest(`${dest}img`))
+});
+gulp.task('svgsprite', function () {
+    return gulp.src(`${src}img/svg/sprite/**/*.svg`) // svg files for sprite
         .pipe(svgmin({
             js2svg: {
                 pretty: true
@@ -106,19 +137,29 @@ gulp.task('svgSprite', function () {
             },
         }
         ))
-        .pipe(gulp.dest(dest + 'img/svg'));
+        .pipe(gulp.dest(`${dest}img/svg`));
 });
 
 //fonts
 gulp.task('fonts', function() {
-    return gulp.src(src + 'fonts/*.*')
-        .pipe(gulp.dest(dest + 'fonts'))
+    return gulp.src(`${src}fonts/*.*`)
+        .pipe(gulp.dest(`${dest}fonts`))
 })
 
+
+//WATCH
+gulp.task('watch', function() {
+    //css
+    gulp.watch(`${src}scss/**/*.scss`)
+})
+
+//MAINTAIN
+
+gulp.task('clean', function() {
+    return del(`${dest}**`, {force: true})
+})
 
 //DEV TASKS
-gulp.task('clean', function() {
-    return del(dest + '**', {force: true})
-})
-
 gulp.task('dev', gulp.parallel('pug', 'css'));
+
+gulp.task('build', gulp.series('clean', 'pug', 'css', 'scripts', 'svgsprite', 'imagemin', 'fonts'));
