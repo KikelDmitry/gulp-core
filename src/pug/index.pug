@@ -1,10 +1,5 @@
-doctype html
-
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="/css/main.css")
-        title Welcome, stranger
-    body
-        h1 Let's begin
+extends layout/base.pug
+block meta
+    //- - var pageTitle = 'Welcome, stranger';
+    - var pageDescription = 'It is description, stranger';
+    - var noIndex = false;

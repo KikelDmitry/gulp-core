@@ -48,7 +48,7 @@ gulp.task('browser-sync', function() {
 
 //html
 gulp.task('pug', function () {
-    return gulp.src(`${src}pug/**/!(_)*.pug`)
+    return gulp.src(`${src}pug/*.pug`)
         .pipe(pug({
             pretty: true, //deprecated ¯\_(ツ)_/¯
             basedir: './'
@@ -75,6 +75,13 @@ gulp.task('css', function() {
 });
 
 //js
+
+//js files list for order
+// let scriptsList = [
+//     `${src}js/main.js`,
+//     `${src}js/add.js`
+// ]
+
 gulp.task('scripts', function() {
     return gulp.src(`${src}js/*.js`)
         .pipe(concat('bundle.js'))
@@ -149,8 +156,12 @@ gulp.task('fonts', function() {
 
 //WATCH
 gulp.task('watch', function() {
-    //css
-    gulp.watch(`${src}scss/**/*.scss`)
+    //pug
+    gulp.watch(`${src}pug/**/*.pug`, gulp.parallel('pug'));
+    //scss
+    gulp.watch(`${src}scss/**/*.scss`, gulp.parallel('css'));
+    //js
+    gulp.watch(`${src}js/**/*.js`, gulp.parallel('scripts'));
 })
 
 //MAINTAIN
@@ -160,6 +171,6 @@ gulp.task('clean', function() {
 })
 
 //DEV TASKS
-gulp.task('dev', gulp.parallel('pug', 'css'));
+gulp.task('dev', gulp.parallel('pug', 'css', 'scripts', 'browser-sync', 'watch' ));
 
 gulp.task('build', gulp.series('clean', 'pug', 'css', 'scripts', 'svgsprite', 'imagemin', 'fonts'));
