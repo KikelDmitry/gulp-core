@@ -7,7 +7,6 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
-    notify = require('gulp-notify'),
     del = require('del'),
 
     //HTML
@@ -76,7 +75,7 @@ gulp.task('css', function() {
 
 //js
 
-//js files list for order
+//js files list in order
 // let scriptsList = [
 //     `${src}js/main.js`,
 //     `${src}js/add.js`
