@@ -1,11 +1,12 @@
-include vars.pug
+include config.pug
 doctype html
 
-html(lang="ru")
+html(lang=project.lang)
     head
         include head.pug
         
     body
+        //-mixin examples block
+        //- +svg('class', 'anchor', 'title', 'desc')
         h1 Let's begin
-        
         include scripts.pug

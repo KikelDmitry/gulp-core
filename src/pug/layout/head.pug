@@ -1,28 +1,47 @@
 block meta
 
-if pageTitle
-    title=pageTitle
+if page.title
+    title=page.title
 else
-    title=projectName
+    title=project.name
 
 meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width, initial-scale=1")
 
-if noIndex
+if page.noIndex
     meta(name="robots" content="noindex")
 
-if pageDescription
-    meta(name="description" content=pageDescription)
+if page.description
+    meta(name="description" content=page.description)
 else
-    meta(name="description" content=pageTitle)
+    meta(name="description" content=page.title)
 
-if projectColor    
-    meta(name="theme-color" content=projectColor)
+if project.color    
+    meta(name="theme-color" content=project.color)
 
+//- favicon
 link(rel="shortcut icon" href="/img/favicon.png" type="image/x-icon")
 
 //- open graph
-//- meta(name="og:image" content="/tmp/img/og-def.png")
+if page.og.title
+    meta(name="og:title" content=page.og.title)
+else
+    meta(name="og:title" content=project.og.title)
+
+if page.og.url
+    meta(name="og:url" content=page.og.url)
+else
+    meta(name="og:url" content=project.og.url)
+
+if page.og.image
+    meta(name="og:image" content=page.og.image)
+else
+    meta(name="og:image" content=project.og.image)
+
+//-twitter card
+meta(name="twitter:card" content="summary")
+meta(name="twitter:site" content="@kikeldmitry")
+meta(name="twitter:creator" content="@kikeldmitry")
 
 //- styles
 block css
