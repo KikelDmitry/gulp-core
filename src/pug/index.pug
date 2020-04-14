@@ -1,16 +1,17 @@
-extends layout/base.pug
+extends ./layout/base.pug
 block meta
-    -
-        var page = {
-            title: 'Welcome, stranger!',
-            description: 'It is description, stranger',
-            noIndex: false,
-            og: {
-                title: 'local open graph title',
-                url: 'local open graph url',
-                image: 'local open graph image',
-            }
-        };
-    //- - var pageTitle = 'Welcome, stranger';
-    //- - var pageDescription = 'It is description, stranger';
-    //- - var noIndex = false;
+    - var config.title = 'hello';
+//-     -
+//-         var page = {
+//-             title: 'Welcome, stranger!',
+//-             description: 'It is description, stranger',
+//-             noIndex: false,
+//-             og: {
+//-                 //- title: 'local open graph title',
+//-                 //- url: 'local open graph url',
+//-                 image: 'local open graph image',
+//-             },
+//-             twitter: {
+//-                 //- creator: '@test'
+//-             }
+//-         };
