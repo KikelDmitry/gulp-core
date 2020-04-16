@@ -1,17 +1,6 @@
 extends ./layout/base.pug
+
 block meta
-    - var config.title = 'hello';
-//-     -
-//-         var page = {
-//-             title: 'Welcome, stranger!',
-//-             description: 'It is description, stranger',
-//-             noIndex: false,
-//-             og: {
-//-                 //- title: 'local open graph title',
-//-                 //- url: 'local open graph url',
-//-                 image: 'local open graph image',
-//-             },
-//-             twitter: {
-//-                 //- creator: '@test'
-//-             }
-//-         };
+    - config.title = 'page title';
+    - config.description = 'page description';
+    //- and other config properties

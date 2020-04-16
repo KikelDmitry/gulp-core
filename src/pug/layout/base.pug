@@ -3,9 +3,12 @@ doctype html
 
 html(lang=config.lang)
     head
+        //- block meta for local page config
+        block meta
         include head.pug
         
     body
+        block content
         //-mixin examples block
         //- +svg('class', 'anchor', 'title', 'desc')
         h1 Let's begin

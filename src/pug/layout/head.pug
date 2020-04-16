@@ -1,41 +1,28 @@
-block meta
+title=config.title
 
-    title=config.title
+meta(charset="UTF-8")
+meta(name="viewport" content="width=device-width, initial-scale=1")
 
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1")
+if config.noIndex
+    meta(name="robots" content="noindex")
 
-    if config.noIndex
-        meta(name="robots" content="noindex")
+meta(name="description" content=config.description)
 
-    meta(name="description" content=config.description)
-
-    if config.color    
-        meta(name="theme-color" content=config.color)
+if config.color    
+    meta(name="theme-color" content=config.color)
 
 //- favicon
 link(rel="shortcut icon" href="/img/favicon.png" type="image/x-icon")
 
 //- open graph
-if config.og.title
-    meta(name="og:title" content=config.title)
-else
-    meta(name="og:title" content=config.title)
-
-if config.og.url
-    meta(name="og:url" content=config.og.url)
-
-if config.og.image
-    meta(name="og:image" content=config.og.image)
+meta(name="og:title" content=config.title)
+meta(name="og:url" content=config.og.url)
+meta(name="og:image" content=config.og.image)
 
 //-twitter card
 meta(name="twitter:card" content="summary")
-if config.twitter.creator
-    meta(name="twitter:site" content=config.twitter.creator)
-    meta(name="twitter:creator" content=config.twitter.creator)
-else 
-    meta(name="twitter:site" content=config.twitter.creator)
-    meta(name="twitter:creator" content=config.twitter.creator)
+meta(name="twitter:site" content=config.twitter.creator)
+meta(name="twitter:creator" content=config.twitter.creator)
 
 
 
