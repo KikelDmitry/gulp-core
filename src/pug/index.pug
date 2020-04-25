@@ -1,5 +1,6 @@
-extends layout/base.pug
+extends ./layout/base.pug
+
 block meta
-    - var pageTitle = 'Welcome, stranger';
-    - var pageDescription = 'It is description, stranger';
-    - var noIndex = false;
+    - config.title = 'page title';
+    - config.description = 'page description';
+    //- and other config properties
