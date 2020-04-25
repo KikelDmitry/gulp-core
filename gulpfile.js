@@ -1,7 +1,7 @@
 'use strict';
 
 //PCKGS
-var gulp = require('gulp'),
+let gulp = require('gulp'),
 
     //COMMON
     browserSync = require('browser-sync'),
