@@ -3,15 +3,15 @@
 //mixins
 //desktop first
 @mixin df($size) {
-    @media (max-width: $size + px) {
-        @content;
-    }
+	@media (max-width: $size + px) {
+		@content;
+	}
 }
 //mobile first
 @mixin mf($size) {
-    @media (min-width: $size + px) {
-        @content;
-    }
+	@media (min-width: $size + px) {
+		@content;
+	}
 }
 
 //main-colors
