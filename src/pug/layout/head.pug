@@ -4,31 +4,31 @@ meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width, initial-scale=1")
 
 if config.noIndex
-    meta(name="robots" content="noindex")
+	meta(name="robots" content="noindex")
 
 meta(name="description" content=config.description)
 
-if config.color    
-    meta(name="theme-color" content=config.color)
+if config.color	
+	meta(name="theme-color" content=config.color)
 
 //- favicon
 link(rel="shortcut icon" href="/img/favicon.png" type="image/x-icon")
 
 //- open graph
 if config.og
-    meta(name="og:title" content=config.og.title)
-    meta(name="og:image" content=config.og.image)
+	meta(name="og:title" content=config.og.title)
+	meta(name="og:image" content=config.og.image)
 
 //-twitter card
 if config.twitter
-    meta(name="twitter:card" content="summary")
-    meta(name="twitter:site" content=config.twitter.creator)
-    meta(name="twitter:creator" content=config.twitter.creator)
+	meta(name="twitter:card" content="summary")
+	meta(name="twitter:site" content=config.twitter.creator)
+	meta(name="twitter:creator" content=config.twitter.creator)
 
 
 
 //- styles
 block css
-    link(rel="stylesheet" href="/css/main.css")
+	link(rel="stylesheet" href="/css/main.css")
 block styles
 
