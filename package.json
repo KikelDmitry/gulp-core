@@ -27,5 +27,8 @@
 		"gulp-svgmin": "^2.2.0",
 		"imagemin-pngquant": "^8.0.0",
 		"imagemin-zopfli": "^6.0.0"
-	}
+	},
+	"browserslist": [
+		"last 2 versions"
+	]
 }

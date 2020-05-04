@@ -65,7 +65,6 @@ gulp.task('css', function() {
         })).on('error', sass.logError)
         .pipe(csso())
         .pipe(autoprefixer({
-            overrideBrowserslist: ['last 2 versions'],
             cascade: false
         }))
         .pipe(sourcemaps.write('.'))
