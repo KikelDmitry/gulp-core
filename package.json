@@ -8,7 +8,10 @@
 		"build": "gulp build"
 	},
 	"keywords": [],
-	"author": "kikelDmitry",
+	"author": {
+		"name": "Kikel Dmitry",
+		"url": "https://kikel.net"
+	},
 	"license": "ISC",
 	"devDependencies": {
 		"browser-sync": "^2.26.7",
@@ -27,6 +30,10 @@
 		"gulp-svgmin": "^2.2.0",
 		"imagemin-pngquant": "^8.0.0",
 		"imagemin-zopfli": "^6.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/KikelDmitry/gulp.git"
 	},
 	"browserslist": [
 		"last 2 versions"

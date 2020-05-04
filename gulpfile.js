@@ -58,7 +58,6 @@ gulp.task('pug', function () {
 
 //css
 gulp.task('css', function() {
-<<<<<<< HEAD
     return gulp.src(`${src}scss/**/*.scss`)
         .pipe(sourcemaps.init())
         .pipe(sass({
@@ -71,21 +70,6 @@ gulp.task('css', function() {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(`${dest}css`))
         .pipe(browserSync.stream())
-=======
-	return gulp.src(`${src}scss/**/*.scss`)
-		.pipe(sourcemaps.init())
-		.pipe(sass({
-			outputStyle: 'compressed'
-		})).on('error', sass.logError)
-		.pipe(csso())
-		.pipe(autoprefixer({
-			overrideBrowserslist: ['last 2 versions'],
-			cascade: false
-		}))
-		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest(`${dest}css`))
-		.pipe(browserSync.stream())
->>>>>>> 8bdb5cb6aaa76b6d459087a43ea6a337cc161541
 });
 
 //js
