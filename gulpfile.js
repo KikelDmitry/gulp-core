@@ -37,7 +37,7 @@ let gulp = require('gulp'),
 	dest = 'build/';
 
 //TASKS
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', function () {
 	browserSync.init({
 		server: {
 			baseDir: dest
@@ -57,19 +57,19 @@ gulp.task('pug', function () {
 });
 
 //css
-gulp.task('css', function() {
-    return gulp.src(`${src}scss/**/*.scss`)
-        .pipe(sourcemaps.init())
-        .pipe(sass({
-            outputStyle: 'compressed'
-        })).on('error', sass.logError)
-        .pipe(csso())
-        .pipe(autoprefixer({
-            cascade: false
-        }))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(`${dest}css`))
-        .pipe(browserSync.stream())
+gulp.task('css', function () {
+	return gulp.src(`${src}scss/**/*.scss`)
+		.pipe(sourcemaps.init())
+		.pipe(sass({
+			outputStyle: 'compressed'
+		})).on('error', sass.logError)
+		.pipe(csso())
+		.pipe(autoprefixer({
+			cascade: false
+		}))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest(`${dest}css`))
+		.pipe(browserSync.stream())
 });
 
 //js
@@ -80,7 +80,7 @@ gulp.task('css', function() {
 //	 `${src}js/add.js`
 // ]
 
-gulp.task('scripts', function() {
+gulp.task('scripts', function () {
 	return gulp.src(`${src}js/*.js`)
 		.pipe(concat('bundle.js'))
 		.pipe(minify({
@@ -89,7 +89,7 @@ gulp.task('scripts', function() {
 			}
 		}))
 		.pipe(gulp.dest(`${dest}js`))
-		.pipe(browserSync.stream())	
+		.pipe(browserSync.stream())
 });
 
 //img
@@ -146,14 +146,14 @@ gulp.task('svgsprite', function () {
 });
 
 //fonts
-gulp.task('fonts', function() {
+gulp.task('fonts', function () {
 	return gulp.src(`${src}fonts/*.*`)
 		.pipe(gulp.dest(`${dest}fonts`))
 })
 
 
 //WATCH
-gulp.task('watch', function() {
+gulp.task('watch', function () {
 	//pug
 	gulp.watch(`${src}pug/**/*.pug`, gulp.parallel('pug'));
 	//scss
@@ -164,11 +164,11 @@ gulp.task('watch', function() {
 
 //MAINTAIN
 
-gulp.task('clean', function() {
-	return del(`${dest}**`, {force: true})
+gulp.task('clean', function () {
+	return del(`${dest}**`, { force: true })
 })
 
 //DEV TASKS
-gulp.task('dev', gulp.parallel('pug', 'css', 'scripts', 'browser-sync', 'watch' ));
+gulp.task('dev', gulp.parallel('pug', 'css', 'scripts', 'browser-sync', 'watch'));
 
-gulp.task('build', gulp.series('clean', 'pug', 'css', 'scripts', 'svgsprite', 'imagemin', 'fonts'));
+gulp.task('build', gulp.series(['clean', gulp.parallel('pug', 'css', 'scripts', 'svgsprite', 'imagemin', 'fonts')]));
