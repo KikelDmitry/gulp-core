@@ -14,7 +14,8 @@ let gulp = require('gulp'),
 
 	//CSS
 	sass = require('gulp-sass'),
-	autoprefixer = require('gulp-autoprefixer'),
+	postcss = require('gulp-postcss'),
+	autoprefixer = require('autoprefixer'),
 	csso = require('gulp-csso'),
 
 	//JS
@@ -64,9 +65,9 @@ gulp.task('css', function () {
 			outputStyle: 'compressed'
 		})).on('error', sass.logError)
 		.pipe(csso())
-		.pipe(autoprefixer({
-			cascade: false
-		}))
+		.pipe(postcss([
+			autoprefixer()
+		]))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(`${dest}css`))
 		.pipe(browserSync.stream())
