@@ -18,13 +18,11 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const csso = require('gulp-csso');
 
-//js;
+//js
 const minify = require('gulp-minify');
 
 //bitmap
-const gulpImagemin = require('gulp-imagemin');
-const imageminPngQuant = require('imagemin-pngquant');
-const imageminZopfli = require('imagemin-zopfli');
+const imagemin = require('gulp-imagemin');
 
 //svg
 const gulpSvgSprite = require('gulp-svg-sprite');
@@ -86,35 +84,30 @@ const scripts = () => {
 		.pipe(browserSync.stream())
 };
 
-const imagemin = () => {
+const images = () => {
 	return src([
 		config.src + 'img/**/*.{png,jpg,jpeg,svg,gif}',
 		'!' + config.src + 'img/svg/sprite/**/*.svg'
 	])
-		.pipe(gulpImagemin([
-			//png
-			imageminPngQuant({
-				speed: 1,
-				quality: [0.95, 1] //lossy settings
-			}),
-			imageminZopfli({
-				more: true
-				// iterations: 50 // very slow but more effective
-			}),
-			//jpg
-			gulpImagemin.mozjpeg({
-				progressive: true,
-				quality: 90
-			}),
-			//svg
-			gulpImagemin.svgo({
-				plugins: [{
-					removeViewBox: false
-				}]
-			})
-		]))
+		.pipe(imagemin({
+			plugins: [
+				imagemin.gifsicle({ interlaced: true }),
+				imagemin.mozjpeg({ quality: 75, progressive: true }),
+				imagemin.optipng({ optimizationLevel: 5 }),
+				imagemin.svgo({
+					plugins: [
+						{ removeViewBox: true },
+						{ cleanupIDs: false }
+					]
+				})
+
+			],
+			verbose: true
+		}))
 		.pipe(dest(config.dest + 'img'))
 };
+exports.images = images;
+
 
 const svgsprite = () => {
 	return src(config.src + 'img/svg/sprite/**/*.svg') // svg files for sprite
@@ -141,6 +134,7 @@ const svgsprite = () => {
 		))
 		.pipe(dest(config.dest + 'img/svg'));
 };
+exports.svgsprite = svgsprite;
 
 const fonts = () => {
 	return src(config.src + 'fonts/*.*')
@@ -157,8 +151,6 @@ const watcher = () => {
 const clean = () => {
 	return del(config.dest + '**', { force: true })
 };
-
-exports.svgsprite = svgsprite;
 exports.clean = clean;
 
 //development task
@@ -178,7 +170,7 @@ exports.build = series(
 		sass,
 		scripts,
 		svgsprite,
-		imagemin,
+		// imagemin,
 		fonts
 	)
 );
