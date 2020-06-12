@@ -1,102 +1,97 @@
 'use strict';
 
 //PCKGS
-let gulp = require('gulp'),
+const { src, dest, parallel, series, watch } = require('gulp');
 
-	//COMMON
-	browserSync = require('browser-sync'),
-	concat = require('gulp-concat'),
-	sourcemaps = require('gulp-sourcemaps'),
-	del = require('del'),
-
-	//HTML
-	pug = require('gulp-pug'),
-
-	//CSS
-	sass = require('gulp-sass'),
-	postcss = require('gulp-postcss'),
-	autoprefixer = require('autoprefixer'),
-	csso = require('gulp-csso'),
-
-	//JS
-	minify = require('gulp-minify'),
-
-
-	//IMG
-	//bitmap
-	imagemin = require('gulp-imagemin'),
-	imageminPngQuant = require('imagemin-pngquant'),
-	imageminZopfli = require('imagemin-zopfli'),
-
-	//svg
-	svgSprite = require('gulp-svg-sprite'),
-	cheerio = require('gulp-cheerio'),
-	svgmin = require('gulp-svgmin'),
-
-	//GLOBS
-	src = 'src/',
-	dest = 'build/';
-
-//TASKS
-gulp.task('browser-sync', function () {
-	browserSync.init({
-		server: {
-			baseDir: dest
-		}
-	})
-});
+//common
+const browserSync = require('browser-sync');
+const concat = require('gulp-concat');
+const sourcemaps = require('gulp-sourcemaps');
+const del = require('del');
 
 //html
-gulp.task('pug', function () {
-	return gulp.src(`${src}pug/*.pug`)
-		.pipe(pug({
+const gulpPug = require('gulp-pug');
+
+// css
+const gulpSass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const csso = require('gulp-csso');
+
+//js;
+const minify = require('gulp-minify');
+
+//bitmap
+const gulpImagemin = require('gulp-imagemin');
+const imageminPngQuant = require('imagemin-pngquant');
+const imageminZopfli = require('imagemin-zopfli');
+
+//svg
+const gulpSvgSprite = require('gulp-svg-sprite');
+const cheerio = require('gulp-cheerio');
+const svgmin = require('gulp-svgmin');
+
+
+//CONFIG
+
+const config = {
+	src: './src/',
+	dest: './build/',
+};
+
+//server
+const server = () => {
+	browserSync.init({
+		server: {
+			baseDir: config.dest
+		}
+	})
+};
+
+//TASKS
+const pug = () => {
+	return src(config.src + 'pug/*.pug')
+		.pipe(gulpPug({
 			pretty: true, //deprecated ¯\_(ツ)_/¯
 			basedir: './'
 		}))
-		.pipe(gulp.dest(dest))
+		.pipe(dest(config.dest))
 		.pipe(browserSync.stream())
-});
+};
 
-//css
-gulp.task('css', function () {
-	return gulp.src(`${src}scss/**/*.scss`)
+const sass = () => {
+	return src(config.src + 'scss/**/*.scss')
 		.pipe(sourcemaps.init())
-		.pipe(sass({
+		.pipe(gulpSass({
 			outputStyle: 'compressed'
-		})).on('error', sass.logError)
+		})).on('error', gulpSass.logError)
 		.pipe(csso())
 		.pipe(postcss([
 			autoprefixer()
 		]))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest(`${dest}css`))
+		.pipe(dest(config.dest + 'css'))
 		.pipe(browserSync.stream())
-});
+};
 
-//js
-
-//js files list in order
-// let scriptsList = [
-//	 `${src}js/main.js`,
-//	 `${src}js/add.js`
-// ]
-
-gulp.task('scripts', function () {
-	return gulp.src(`${src}js/*.js`)
+const scripts = () => {
+	return src(config.src + 'js/*.js')
 		.pipe(concat('bundle.js'))
 		.pipe(minify({
 			ext: {
 				min: '.min.js'
 			}
 		}))
-		.pipe(gulp.dest(`${dest}js`))
+		.pipe(dest(config.dest + 'js'))
 		.pipe(browserSync.stream())
-});
+};
 
-//img
-gulp.task('imagemin', function () {
-	return gulp.src([`${src}img/**/*.{png,jpg,jpeg,svg,gif}`, `!${src}img/svg/sprite/**/*.svg`])
-		.pipe(imagemin([
+const imagemin = () => {
+	return src([
+		config.src + 'img/**/*.{png,jpg,jpeg,svg,gif}',
+		'!' + config.src + 'img/svg/sprite/**/*.svg'
+	])
+		.pipe(gulpImagemin([
 			//png
 			imageminPngQuant({
 				speed: 1,
@@ -107,21 +102,22 @@ gulp.task('imagemin', function () {
 				// iterations: 50 // very slow but more effective
 			}),
 			//jpg
-			imagemin.mozjpeg({
+			gulpImagemin.mozjpeg({
 				progressive: true,
 				quality: 90
 			}),
 			//svg
-			imagemin.svgo({
+			gulpImagemin.svgo({
 				plugins: [{
 					removeViewBox: false
 				}]
 			})
 		]))
-		.pipe(gulp.dest(`${dest}img`))
-});
-gulp.task('svgsprite', function () {
-	return gulp.src(`${src}img/svg/sprite/**/*.svg`) // svg files for sprite
+		.pipe(dest(config.dest + 'img'))
+};
+
+const svgsprite = () => {
+	return src(config.src + 'img/svg/sprite/**/*.svg') // svg files for sprite
 		.pipe(svgmin({
 			js2svg: {
 				pretty: true
@@ -135,41 +131,54 @@ gulp.task('svgsprite', function () {
 			},
 			parserOptions: { xmlMode: true }
 		}))
-		.pipe(svgSprite({
+		.pipe(gulpSvgSprite({
 			mode: {
 				symbol: {
-					sprite: "../sprite.svg"  //sprite file name
+					sprite: '../sprite.svg'  //sprite file name
 				}
 			},
 		}
 		))
-		.pipe(gulp.dest(`${dest}img/svg`));
-});
+		.pipe(dest(config.dest + 'img/svg'));
+};
 
-//fonts
-gulp.task('fonts', function () {
-	return gulp.src(`${src}fonts/*.*`)
-		.pipe(gulp.dest(`${dest}fonts`))
-})
+const fonts = () => {
+	return src(config.src + 'fonts/*.*')
+		.pipe(dest(config.dest + 'fonts'))
+};
+
+const watcher = () => {
+	watch(config.src + 'pug/**/*.pug', pug)
+	watch(config.src + 'scss/**/*.scss', sass)
+	watch(config.src + 'js/**/*.js', scripts)
+};
 
 
-//WATCH
-gulp.task('watch', function () {
-	//pug
-	gulp.watch(`${src}pug/**/*.pug`, gulp.parallel('pug'));
-	//scss
-	gulp.watch(`${src}scss/**/*.scss`, gulp.parallel('css'));
-	//js
-	gulp.watch(`${src}js/**/*.js`, gulp.parallel('scripts'));
-})
+const clean = () => {
+	return del(config.dest + '**', { force: true })
+};
 
-//MAINTAIN
+exports.svgsprite = svgsprite;
+exports.clean = clean;
 
-gulp.task('clean', function () {
-	return del(`${dest}**`, { force: true })
-})
+//development task
+exports.dev = parallel(
+	pug,
+	sass,
+	scripts,
+	server,
+	watcher
+);
 
-//DEV TASKS
-gulp.task('dev', gulp.parallel('pug', 'css', 'scripts', 'browser-sync', 'watch'));
-
-gulp.task('build', gulp.series(['clean', gulp.parallel('pug', 'css', 'scripts', 'svgsprite', 'imagemin', 'fonts')]));
+//production task
+exports.build = series(
+	clean,
+	parallel(
+		pug,
+		sass,
+		scripts,
+		svgsprite,
+		imagemin,
+		fonts
+	)
+);

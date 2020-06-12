@@ -20,8 +20,9 @@ img {
 	max-width: 100%;
 	height: auto;
 }
-main { /* ie fix */
-	display: block; 
+main {
+	/* ie fix */
+	display: block;
 	width: 100%;
 }
 h1,
@@ -49,8 +50,7 @@ select {
 button {
 	display: block;
 	background: none;
-	font-family: inherit;
-	font-size: inherit;
+	font: inherit;
 	border: none;
 	color: inherit;
 	user-select: none;
@@ -58,13 +58,6 @@ button {
 
 	&:hover {
 		cursor: pointer;
-	}
-}
-a,
-button {
-	&:focus {
-		outline: none;
-		box-shadow: 0 0 0 2px red;
 	}
 }
 .visually-hidden {

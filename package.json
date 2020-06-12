@@ -1,18 +1,9 @@
 {
-	"name": "gulp-start",
-	"version": "1.0.1",
-	"description": "start gulp build",
-	"main": "index.js",
 	"scripts": {
 		"dev": "gulp dev",
 		"build": "gulp build"
 	},
 	"private": true,
-	"keywords": [],
-	"author": {
-		"name": "Kikel Dmitry",
-		"url": "https://kikel.net"
-	},
 	"license": "ISC",
 	"devDependencies": {
 		"autoprefixer": "^9.8.0",
@@ -33,11 +24,8 @@
 		"imagemin-pngquant": "^8.0.0",
 		"imagemin-zopfli": "^6.0.0"
 	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/KikelDmitry/gulp.git"
-	},
 	"browserslist": [
-		"last 2 versions"
+		"last 2 versions",
+		"not dead"
 	]
 }
