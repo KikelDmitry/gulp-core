@@ -16,7 +16,7 @@ const gulpPug = require('gulp-pug');
 const gulpSass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const csso = require('gulp-csso');
+const csso = require('postcss-csso');
 
 //js
 const minify = require('gulp-minify');
@@ -61,11 +61,11 @@ const sass = () => {
 	return src(config.src + 'scss/**/*.scss')
 		.pipe(sourcemaps.init())
 		.pipe(gulpSass({
-			outputStyle: 'compressed'
+			outputStyle: 'expanded'
 		})).on('error', gulpSass.logError)
-		.pipe(csso())
 		.pipe(postcss([
-			autoprefixer()
+			autoprefixer(),
+			csso()
 		]))
 		.pipe(sourcemaps.write('.'))
 		.pipe(dest(config.dest + 'css'))
