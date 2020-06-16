@@ -162,9 +162,11 @@ exports.dev = series(
 		scripts,
 		svgsprite,
 		fonts,
-		server,
 	),
-	watcher
+	parallel(
+		server,
+		watcher
+	)
 );
 
 //production task
