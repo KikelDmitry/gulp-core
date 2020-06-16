@@ -62,7 +62,8 @@ const sass = () => {
 		.pipe(sourcemaps.init())
 		.pipe(gulpSass({
 			outputStyle: 'expanded'
-		})).on('error', gulpSass.logError)
+		}))
+		.on('error', gulpSass.logError)
 		.pipe(postcss([
 			autoprefixer(),
 			csso()
@@ -154,11 +155,15 @@ const clean = () => {
 exports.clean = clean;
 
 //development task
-exports.dev = parallel(
-	pug,
-	sass,
-	scripts,
-	server,
+exports.dev = series(
+	parallel(
+		pug,
+		sass,
+		scripts,
+		svgsprite,
+		fonts,
+		server,
+	),
 	watcher
 );
 
@@ -170,7 +175,7 @@ exports.build = series(
 		sass,
 		scripts,
 		svgsprite,
-		// imagemin,
+		images,
 		fonts
 	)
 );
