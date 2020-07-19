@@ -6,7 +6,7 @@
 	"private": true,
 	"license": "ISC",
 	"devDependencies": {
-		"autoprefixer": "^9.8.0",
+		"autoprefixer": "^9.8.5",
 		"browser-sync": "^2.26.10",
 		"del": "^5.1.0",
 		"gulp": "^4.0.2",
