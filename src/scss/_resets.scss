@@ -37,10 +37,6 @@ button {
 	margin: 0;
 	padding: 0;
 }
-ul[class],
-ol[class] {
-	list-style: none;
-}
 input,
 button,
 textarea,
@@ -50,11 +46,9 @@ select {
 button {
 	display: block;
 	background: none;
-	font: inherit;
 	border: none;
 	color: inherit;
 	user-select: none;
-	transition: box-shadow 0.3s;
 
 	&:hover {
 		cursor: pointer;
