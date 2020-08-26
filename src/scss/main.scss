@@ -4,17 +4,7 @@
 
 /* BASE */
 
-body {
-	background: $first-color;
-	color: $second-color;
-	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-	font-weight: 400;
-	font-size: 16px;
-	font-size: calc(16px + 0.2vw);
-	line-height: 1.5em;
-	line-height: calc(1.5em + 0.2vw);
-	letter-spacing: 0.02em;
-}
+@import "_common.scss";
 
 @import "_lets-start.scss"; //delete or comment this import
 
