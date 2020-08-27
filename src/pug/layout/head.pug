@@ -4,12 +4,14 @@ meta(charset="UTF-8")
 meta(name="viewport" content="width=device-width, initial-scale=1")
 
 if config.noIndex
-	meta(name="robots" content="noindex")
+	meta(name="robots" content="none")
 
 meta(name="description" content=config.description)
 
 if config.color	
 	meta(name="theme-color" content=config.color)
+else
+	meta(name="theme-color" content="#ffffff")
 
 //- favicon
 link(rel="shortcut icon" href="/img/favicon.png" type="image/x-icon")
