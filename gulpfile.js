@@ -57,7 +57,7 @@ const pug = () => {
 		.pipe(browserSync.stream())
 };
 
-const sass = () => {
+const scss = () => {
 	return src(config.src + 'scss/main.scss')
 		.pipe(sourcemaps.init())
 		.pipe(gulpSass({
@@ -71,6 +71,7 @@ const sass = () => {
 		.pipe(sourcemaps.write('.'))
 		.pipe(dest(config.dest + 'css'))
 		.pipe(browserSync.stream())
+
 };
 
 const scripts = () => {
@@ -144,7 +145,7 @@ const fonts = () => {
 
 const watcher = () => {
 	watch(config.src + 'pug/**/*.pug', pug)
-	watch(config.src + 'scss/**/*.scss', sass)
+	watch(config.src + 'scss/**/*.scss', scss)
 	watch(config.src + 'js/**/*.js', scripts)
 };
 
@@ -158,7 +159,7 @@ exports.clean = clean;
 exports.dev = series(
 	parallel(
 		pug,
-		sass,
+		scss,
 		scripts,
 		svgsprite,
 		fonts,
@@ -174,7 +175,7 @@ exports.build = series(
 	clean,
 	parallel(
 		pug,
-		sass,
+		scss,
 		scripts,
 		svgsprite,
 		images,
