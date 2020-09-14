@@ -48,10 +48,14 @@ const server = () => {
 
 //TASKS
 const pug = () => {
-	return src(config.src + 'pug/*.pug')
+	let pugArr = [
+		config.src + 'pug/**/*.pug',
+		'!' + config.src + 'pug/**/_*/*.pug',
+	];
+	return src(pugArr)
 		.pipe(gulpPug({
 			pretty: true, //deprecated ¯\_(ツ)_/¯
-			basedir: './'
+			basedir: config.src + 'pug/'
 		}))
 		.pipe(dest(config.dest))
 		.pipe(browserSync.stream())
@@ -155,22 +159,8 @@ const clean = () => {
 };
 exports.clean = clean;
 
-//development task
-exports.dev = series(
-	parallel(
-		pug,
-		scss,
-		scripts,
-		svgsprite,
-		fonts,
-	),
-	parallel(
-		server,
-		watcher
-	)
-);
 
-//production task
+//build task
 exports.build = series(
 	clean,
 	parallel(
@@ -180,5 +170,14 @@ exports.build = series(
 		svgsprite,
 		images,
 		fonts
+	)
+);
+
+//development task
+exports.dev = series(
+	this.build,
+	parallel(
+		server,
+		watcher
 	)
 );

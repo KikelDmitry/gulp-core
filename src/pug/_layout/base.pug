@@ -1,15 +1,13 @@
-include config.pug
+include /_includes/config.pug
 doctype html
 
 html(lang=config.lang)
 	head
 		//- block meta for local page config
 		block meta
-		include head.pug
+		include /_includes/head.pug
 		
 	body
 		block content
-		//-mixin examples block
-		//- +svg('class', 'anchor', 'title', 'desc')
 		h1 Let's begin
-		include scripts.pug
+		include /_includes/scripts.pug
