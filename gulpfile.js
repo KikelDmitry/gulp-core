@@ -36,6 +36,20 @@ const config = {
 	src: './src/',
 	dest: './build/',
 };
+const globs = {
+	pug: [
+		config.src + 'pug/**/*.pug',
+		'!' + config.src + 'pug/**/_*/*.pug',
+	],
+	scss: config.src + 'scss/main.scss',
+	js: config.src + 'js/**/*.js',
+	images: [
+		config.src + 'img/**/*.{png,jpg,jpeg,svg,gif}',
+		'!' + config.src + 'img/sprite/**/*.svg'
+	],
+	sprite: config.src + 'img/sprite/**/*.svg',
+	fonts: config.src + 'fonts/*.*',
+}
 
 //server
 const server = () => {
@@ -48,11 +62,7 @@ const server = () => {
 
 //TASKS
 const pug = () => {
-	let pugArr = [
-		config.src + 'pug/**/*.pug',
-		'!' + config.src + 'pug/**/_*/*.pug',
-	];
-	return src(pugArr)
+	return src(globs.pug)
 		.pipe(gulpPug({
 			pretty: true, //deprecated ¯\_(ツ)_/¯
 			basedir: config.src + 'pug/'
@@ -62,7 +72,7 @@ const pug = () => {
 };
 
 const scss = () => {
-	return src(config.src + 'scss/main.scss')
+	return src(globs.scss)
 		.pipe(sourcemaps.init())
 		.pipe(gulpSass({
 			outputStyle: 'expanded'
@@ -79,7 +89,7 @@ const scss = () => {
 };
 
 const scripts = () => {
-	return src(config.src + 'js/*.js')
+	return src(globs.js)
 		.pipe(concat('bundle.js'))
 		.pipe(minify({
 			ext: {
@@ -91,10 +101,7 @@ const scripts = () => {
 };
 
 const images = () => {
-	return src([
-		config.src + 'img/**/*.{png,jpg,jpeg,svg,gif}',
-		'!' + config.src + 'img/sprite/**/*.svg'
-	])
+	return src(globs.images)
 		.pipe(imagemin({
 			plugins: [
 				imagemin.gifsicle({ interlaced: true }),
@@ -116,7 +123,7 @@ exports.images = images;
 
 
 const svgsprite = () => {
-	return src(config.src + 'img/sprite/**/*.svg') // svg files for sprite
+	return src(globs.sprite)
 		.pipe(svgmin({
 			js2svg: {
 				pretty: true
@@ -143,14 +150,16 @@ const svgsprite = () => {
 exports.svgsprite = svgsprite;
 
 const fonts = () => {
-	return src(config.src + 'fonts/*.*')
+	return src(globs.fonts)
 		.pipe(dest(config.dest + 'fonts'))
 };
 
 const watcher = () => {
 	watch(config.src + 'pug/**/*.pug', pug)
 	watch(config.src + 'scss/**/*.scss', scss)
-	watch(config.src + 'js/**/*.js', scripts)
+	watch(globs.js, scripts)
+	watch(globs.images, images)
+	watch(globs.sprite, svgsprite)
 };
 
 
