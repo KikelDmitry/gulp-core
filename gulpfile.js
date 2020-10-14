@@ -48,7 +48,7 @@ const globs = {
 		'!' + config.src + 'img/sprite/**/*.svg'
 	],
 	sprite: config.src + 'img/sprite/**/*.svg',
-	fonts: config.src + 'fonts/*.*',
+	fonts: config.src + 'fonts/**/*.*',
 }
 
 //server
