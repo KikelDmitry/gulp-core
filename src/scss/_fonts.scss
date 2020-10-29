@@ -17,7 +17,7 @@ $font-list: (
 @each $name, $weight, $style in $font-list {
 	@font-face {
 		font-family: "Roboto";
-		src: url($font-path + $name + ".woff2") format("woff2"), url($font-path + $name + ".woff") format("woff");
+		src: url($font-path + 'roboto/' + $name + ".woff2") format("woff2"), url($font-path + $name + ".woff") format("woff");
 		font-weight: $weight;
 		font-style: $style;
 		font-display: swap;
