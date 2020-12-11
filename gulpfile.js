@@ -42,6 +42,7 @@ const globs = {
 		'!' + config.src + 'pug/**/_*/*.pug',
 	],
 	scss: config.src + 'scss/main.scss',
+	criticalScss: config.src + 'scss/_critical.scss',
 	js: config.src + 'js/**/*.js',
 	images: [
 		config.src + 'img/**/*.{png,jpg,jpeg,svg,gif}',
@@ -86,6 +87,19 @@ const scss = () => {
 		.pipe(dest(config.dest + 'css'))
 		.pipe(browserSync.stream())
 
+};
+
+const criticalCss = () => {
+	return src(globs.criticalScss)
+		.pipe(gulpSass({
+
+		}))
+		.pipe(postcss([
+			autoprefixer(),
+			csso(),
+		]))
+		.pipe(dest(config.dest + 'css'))
+		.pipe(browserSync.stream())
 };
 
 const scripts = () => {
