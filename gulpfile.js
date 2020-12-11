@@ -42,7 +42,7 @@ const globs = {
 		'!' + config.src + 'pug/**/_*/*.pug',
 	],
 	scss: config.src + 'scss/main.scss',
-	criticalScss: config.src + 'scss/_critical.scss',
+	criticalScss: config.src + 'scss/critical.scss',
 	js: config.src + 'js/**/*.js',
 	images: [
 		config.src + 'img/**/*.{png,jpg,jpeg,svg,gif}',
@@ -65,12 +65,13 @@ const server = () => {
 const pug = () => {
 	return src(globs.pug)
 		.pipe(gulpPug({
-			pretty: true, //deprecated ¯\_(ツ)_/¯
-			basedir: config.src + 'pug/'
+			pretty: true,
+			basedir: './'
 		}))
 		.pipe(dest(config.dest))
 		.pipe(browserSync.stream())
 };
+exports.pug = pug;
 
 const scss = () => {
 	return src(globs.scss)
@@ -171,6 +172,7 @@ const fonts = () => {
 const watcher = () => {
 	watch(config.src + 'pug/**/*.pug', pug)
 	watch(config.src + 'scss/**/*.scss', scss)
+	watch(config.src + 'scss/**/critical.scss', series(criticalCss, pug))
 	watch(globs.js, scripts)
 	watch(globs.images, images)
 	watch(globs.sprite, svgsprite)
@@ -187,8 +189,11 @@ exports.clean = clean;
 exports.build = series(
 	clean,
 	parallel(
-		pug,
-		scss,
+		series(
+			scss,
+			criticalCss,
+			pug,
+		),
 		scripts,
 		svgsprite,
 		images,

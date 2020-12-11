@@ -35,6 +35,11 @@ if config.twitter
 	meta(name="twitter:creator" content=config.twitter.creator)
 
 //- styles
+block criticalCss
+	//critical css
+	style
+		include /build/css/critical.css
+
 block css
 	link(rel="stylesheet" href="/css/main.css")
 block styles
