@@ -1,3 +1,7 @@
+:root {
+	--color-bg: #{$color-bg};
+	--color-fg: #{$color-fg};
+}
 body {
 	background: $color-bg;
 	color: $color-fg;

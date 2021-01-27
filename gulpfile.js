@@ -42,7 +42,6 @@ const globs = {
 		'!' + config.src + 'pug/**/_*/*.pug',
 	],
 	scss: config.src + 'scss/main.scss',
-	criticalScss: config.src + 'scss/critical.scss',
 	js: config.src + 'js/**/*.js',
 	images: [
 		config.src + 'img/**/*.{png,jpg,jpeg,svg,gif}',
@@ -88,19 +87,6 @@ const scss = () => {
 		.pipe(dest(config.dest + 'css'))
 		.pipe(browserSync.stream())
 
-};
-
-const criticalCss = () => {
-	return src(globs.criticalScss)
-		.pipe(gulpSass({
-
-		}))
-		.pipe(postcss([
-			autoprefixer(),
-			csso(),
-		]))
-		.pipe(dest(config.dest + 'css'))
-		.pipe(browserSync.stream())
 };
 
 const scripts = () => {
@@ -172,7 +158,6 @@ const fonts = () => {
 const watcher = () => {
 	watch(config.src + 'pug/**/*.pug', pug)
 	watch(config.src + 'scss/**/*.scss', scss)
-	watch(config.src + 'scss/**/critical.scss', series(criticalCss, pug))
 	watch(globs.js, scripts)
 	watch(globs.images, images)
 	watch(globs.sprite, svgsprite)
@@ -191,7 +176,6 @@ exports.build = series(
 	parallel(
 		series(
 			scss,
-			criticalCss,
 			pug,
 		),
 		scripts,
