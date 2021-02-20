@@ -3,8 +3,8 @@
 	--color-fg: #{$color-fg};
 }
 body {
-	background: $color-bg;
-	color: $color-fg;
+	background: var(--color-bg);
+	color: var(--color-fg);
 	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 	font-weight: 400;
 	font-size: 16px;
