@@ -1,8 +1,19 @@
 //- svg sprite insert
-mixin svg(classes, anchor, title, desc)
-	svg(class=classes)
-		use(href="/img/svg/sprite.svg#" + anchor)
+mixin svg(classes, anchor, title, desc, attrObj)
+	svg(class=classes)&attributes(attrObj) 
+		use(href="/img/sprite.svg#" + anchor)
 		if title
 			title=title
 		if desc
 			desc=desc
+	//- example:
+		+svg(
+			'some-class',
+			'icons--googleLogo',
+			'Some title',
+			'google logo',
+			{
+				'role': 'img',
+				'aria-role': 'image'
+			}
+		)
