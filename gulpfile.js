@@ -55,8 +55,10 @@ const globs = {
 const server = () => {
 	browserSync.init({
 		server: {
-			baseDir: config.dest
-		}
+			baseDir: config.dest,
+			directory: true,
+		},
+		notify: false,
 	})
 };
 
