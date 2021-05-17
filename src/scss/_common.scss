@@ -1,8 +1,11 @@
 :root {
 	--color-bg: #{$color-bg};
 	--color-fg: #{$color-fg};
+	height: 100%;
 }
 body {
+	min-width: 280px;
+	min-height: 480px;
 	background: var(--color-bg);
 	color: var(--color-fg);
 	font-family: "Roboto", "Helvetica", "Arial", sans-serif;

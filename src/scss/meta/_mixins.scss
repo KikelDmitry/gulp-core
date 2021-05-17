@@ -1,12 +1,21 @@
-// desktop first
+// desktop first (max-width)
 @mixin df($size) {
 	@media (max-width: $size + px) {
 		@content;
 	}
 }
-// mobile first
+
+// mobile first (min-width)
 @mixin mf($size) {
 	@media (min-width: $size + px) {
 		@content;
 	}
 }
+
+// hover only
+@mixin hover() {
+	@media (hover: hover) {
+		@content;
+	}
+}
+
