@@ -8,6 +8,7 @@ const browserSync = require('browser-sync');
 const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
+const dirTree = require("directory-tree");
 
 //html
 const gulpPug = require('gulp-pug');
@@ -165,6 +166,12 @@ const watcher = () => {
 	watch(globs.sprite, svgsprite)
 };
 
+const buildTree = () => {
+	console.log(dirTree('./', {
+		exclude: './build'
+	}))
+}
+exports.buildTree = buildTree;
 
 const clean = () => {
 	return del(config.dest + '**', { force: true })
