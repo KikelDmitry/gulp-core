@@ -8,13 +8,12 @@ const browserSync = require('browser-sync');
 const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
-const dirTree = require("directory-tree");
 
 //html
 const gulpPug = require('gulp-pug');
 
 // css
-const gulpSass = require('gulp-sass');
+const gulpSass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const csso = require('postcss-csso');
