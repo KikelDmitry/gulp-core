@@ -6,15 +6,15 @@
 	"private": true,
 	"license": "ISC",
 	"devDependencies": {
-		"autoprefixer": "^10.3.1",
+		"autoprefixer": "^10.3.3",
 		"browser-sync": "^2.27.5",
 		"del": "^6.0.0",
 		"gulp": "^4.0.2",
 		"gulp-cheerio": "^1.0.0",
 		"gulp-concat": "^2.6.1",
-		"gulp-imagemin": "^7.1.0",
+		"gulp-imagemin": "^8.0.0",
 		"gulp-minify": "^3.1.0",
-		"gulp-postcss": "^9.0.0",
+		"gulp-postcss": "^9.0.1",
 		"gulp-pug": "^5.0.0",
 		"gulp-sass": "^5.0.0",
 		"gulp-sourcemaps": "^3.0.0",
@@ -22,7 +22,7 @@
 		"gulp-svgmin": "^4.0.1",
 		"postcss": "^8.3.0",
 		"postcss-csso": "^5.0.1",
-		"sass": "^1.37.5"
+		"sass": "^1.38.2"
 	},
 	"browserslist": [
 		"last 2 versions",
