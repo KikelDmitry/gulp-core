@@ -23,6 +23,7 @@ const minify = require('gulp-minify');
 
 //bitmap
 const imagemin = require('gulp-imagemin');
+const imageminPngquant = require('imagemin-pngquant');
 
 //svg
 const gulpSvgSprite = require('gulp-svg-sprite');
@@ -105,19 +106,20 @@ const scripts = () => {
 
 const images = () => {
 	return src(globs.images)
-		.pipe(imagemin({
-			plugins: [
-				imagemin.gifsicle({ interlaced: true }),
-				imagemin.mozjpeg({ quality: 75, progressive: true }),
-				imagemin.optipng({ optimizationLevel: 5 }),
-				imagemin.svgo({
-					plugins: [
-						{ removeViewBox: true },
-						{ cleanupIDs: false }
-					]
-				})
-
-			],
+		.pipe(imagemin([
+			imagemin.gifsicle({ interlaced: true }),
+			imagemin.mozjpeg({ quality: 75, progressive: true }),
+			imagemin.optipng({ optimizationLevel: 5 }),
+			imagemin.svgo({
+				plugins: [
+					{ removeViewBox: true },
+					{ cleanupIDs: false }
+				]
+			}),
+			imageminPngquant({
+				strip: true,
+			}),
+		],{
 			verbose: true
 		}))
 		.pipe(dest(config.dest + 'img'))
