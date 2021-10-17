@@ -91,6 +91,7 @@ const scss = () => {
 		.pipe(browserSync.stream())
 
 };
+exports.scss = scss;
 
 const scripts = () => {
 	return src(globs.js)
@@ -119,7 +120,7 @@ const images = () => {
 			imageminPngquant({
 				strip: true,
 			}),
-		],{
+		], {
 			verbose: true
 		}))
 		.pipe(dest(config.dest + 'img'))
@@ -130,9 +131,9 @@ exports.images = images;
 const svgsprite = () => {
 	return src(globs.sprite)
 		.pipe(svgmin({
-			js2svg: {
-				pretty: true
-			}
+			plugins: [
+				'preset-default',
+			]
 		}))
 		.pipe(cheerio({
 			run: function ($) {
