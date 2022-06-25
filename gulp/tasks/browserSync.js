@@ -1,9 +1,7 @@
 import { config } from '../config.js';
-import pkg from 'gulp';
-const { src, pipe, dest } = pkg;
 import browserSync from 'browser-sync';
 
-export default () => {
+export const bs = () => {
 	browserSync.init({
 		server: {
 			baseDir: config.dest,

@@ -1,6 +1,6 @@
 import { config } from '../config.js';
 import del from 'del';
 
-export default () => {
+export const clean = () => {
 	return del(config.dest + '**', { force: true })
 };
