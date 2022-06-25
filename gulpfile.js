@@ -1,5 +1,7 @@
 'use strict';
 
-import pugTask from './tasks/pug.js';
+import bs from './gulp/tasks/browserSync.js'
+import pug from './gulp/tasks/pug.js';
+import clean from './gulp/tasks/clean.js';
 
-pugTask();
+export {bs, clean, pug};
