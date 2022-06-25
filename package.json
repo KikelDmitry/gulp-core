@@ -3,6 +3,7 @@
 		"dev": "gulp dev",
 		"build": "gulp build"
 	},
+	"type": "module",
 	"private": true,
 	"license": "ISC",
 	"devDependencies": {
