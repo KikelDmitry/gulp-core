@@ -1,3 +1,5 @@
+'use strict';
+
 import { config, globs } from '../config.js';
 import { src, dest } from '../gulp.js';
 

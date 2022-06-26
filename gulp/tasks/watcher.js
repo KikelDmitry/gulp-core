@@ -1,3 +1,5 @@
+'use strict';
+
 import { config, globs } from '../config.js';
 import { watch } from '../gulp.js';
 import { pug } from './pug.js';
