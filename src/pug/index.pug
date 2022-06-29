@@ -5,5 +5,26 @@ block meta
 	- config.page.description = 'Home page description';
 
 block body
-	h1(style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);text-align:center") #{config.title}
+	//- cut line (remove all above, include this line)
+	style.
+		h1 {
+			position:absolute;
+			top:50%;
+			left:50%;
+			transform:translate(-50%, -50%);
+			text-align:center;
+			font-family:monospace;
+			font-style:italic;
+			line-height: 1;
+		}
+		h1 span {
+			padding: 0 .1em;
+		}
+		h1 span:nth-child(2n) {
+			color:var(--color-bg);
+			background:var(--color-fg);
+		}
+	h1
+		each letter in config.title
+			span #{letter}
 	- console.log(srcTree)
