@@ -13,18 +13,21 @@ block body
 			left:50%;
 			transform:translate(-50%, -50%);
 			text-align:center;
+			font-size:3rem;
 			font-family:monospace;
 			font-style:italic;
-			line-height: 1;
+			line-height:1;
+			display:flex;
+			justify-content:center;
+			gap:.5em;
 		}
 		h1 span {
-			padding: 0 .1em;
+			flex: 0 0 .5em;
 		}
 		h1 span:nth-child(2n) {
 			color:var(--color-bg);
 			background:var(--color-fg);
 		}
 	h1
-		each letter in config.title
-			span #{letter}
-	- console.log(srcTree)
+		each word in config.title.split(' ')
+			span #{word}
