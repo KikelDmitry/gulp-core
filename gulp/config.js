@@ -1,10 +1,9 @@
 'use strict';
 
 //CONFIG
-
 export const config = {
 	src: './src/',
-	dest: './build/',
+	dest: './dest/',
 };
 export const globs = {
 	pug: [

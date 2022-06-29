@@ -1,9 +1,9 @@
 'use strict';
 
-import pkg from 'gulp';
-const { parallel, series } = pkg;
+import { parallel, series } from './gulp/gulp.js';
 import { bs } from './gulp/tasks/browserSync.js'
 import { clean } from './gulp/tasks/clean.js';
+// import { buildTree } from './gulp/tasks/dirTree.js';
 import { watcher } from './gulp/tasks/watcher.js';
 import { pug } from './gulp/tasks/pug.js';
 import { scss } from './gulp/tasks/scss.js';
@@ -15,6 +15,7 @@ import { fonts } from './gulp/tasks/fonts.js';
 
 const build = series(
 	clean,
+	// buildTree,
 	parallel(
 		series(
 			scss,
@@ -24,7 +25,7 @@ const build = series(
 		svgsprite,
 		images,
 		fonts
-	)
+	),
 );
 
 const dev = series(

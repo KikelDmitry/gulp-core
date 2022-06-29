@@ -1,8 +1,13 @@
 {
+  "main": "gulpfile.js",
 	"scripts": {
 		"dev": "gulp dev",
 		"build": "gulp build"
 	},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:KikelDmitry/gulp-template.git"
+  },
 	"type": "module",
 	"private": true,
 	"license": "ISC",
@@ -29,5 +34,8 @@
 	"browserslist": [
 		"last 2 versions",
 		"not dead"
-	]
+	],
+	"dependencies": {
+		"directory-tree": "^3.3.0"
+	}
 }
