@@ -1,5 +1,6 @@
 {
   "main": "gulpfile.js",
+  "name": "gulp-template",
 	"scripts": {
 		"dev": "gulp dev",
 		"build": "gulp build"

@@ -18,7 +18,7 @@ const build = series(
 	// buildTree,
 	parallel(
 		series(
-			scss,
+			scss.prod,
 			pug,
 		),
 		scripts,
@@ -29,7 +29,18 @@ const build = series(
 );
 
 const dev = series(
-	build,
+	clean,
+	// buildTree,
+	parallel(
+		series(
+			scss.dev,
+			pug,
+		),
+		scripts,
+		svgsprite,
+		images,
+		fonts
+	),
 	parallel(
 		bs,
 		watcher
