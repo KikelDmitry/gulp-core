@@ -3,4 +3,4 @@ import { config } from "../config.js";
 import dirTree from "directory-tree";
 
 export const buildTree = Promise.resolve(dirTree(config.src));
-console.log(buildTree);
+// console.log(buildTree);
