@@ -11,7 +11,7 @@ import { fonts } from './fonts.js';
 
 export const watcher = () => {
 	watch(config.src + 'pug/**/*.pug', pug)
-	watch(config.src + 'scss/**/*.scss', scss)
+	watch(config.src + 'scss/**/*.scss', scss.dev)
 	watch(globs.js, scripts)
 	watch(globs.images, images)
 	watch(globs.sprite, svgsprite)
