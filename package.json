@@ -36,7 +36,5 @@
 		"last 2 versions",
 		"not dead"
 	],
-	"dependencies": {
-		"directory-tree": "^3.5.1"
-	}
+	"dependencies": {}
 }

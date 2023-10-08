@@ -4,7 +4,6 @@ import { config, globs } from '../config.js';
 import { src, dest } from '../gulp.js';
 import gulpPug from 'gulp-pug';
 import browserSync from 'browser-sync';
-import { buildTree } from './dirTree.js';
 
 export const pug = () => {
 	return src(globs.pug)
@@ -12,7 +11,7 @@ export const pug = () => {
 			pretty: true,
 			basedir: './',
 			locals: {
-				srcTree: buildTree,
+				// globalPugVariables
 			}
 		}))
 		.pipe(dest(config.dest))
