@@ -13,7 +13,7 @@
 	"private": true,
 	"license": "ISC",
 	"devDependencies": {
-		"autoprefixer": "^10.4.14",
+		"autoprefixer": "^10.4.16",
 		"browser-sync": "^2.29.3",
 		"del": "^6.1.1",
 		"gulp": "^4.0.2",
@@ -28,9 +28,9 @@
 		"gulp-svg-sprite": "^1.5.0",
 		"gulp-svgmin": "^4.1.0",
 		"imagemin-pngquant": "^9.0.2",
-		"postcss": "^8.4.24",
+		"postcss": "^8.4.31",
 		"postcss-csso": "^6.0.1",
-		"sass": "^1.52.3"
+		"sass": "^1.69.0"
 	},
 	"browserslist": [
 		"last 2 versions",
