@@ -1,3 +1,5 @@
+// AT MEDIA
+
 // desktop first (max-width)
 @mixin df($size) {
 	@media (max-width: $size + px) {
@@ -13,9 +15,59 @@
 }
 
 // hover only
-@mixin hover() {
+@mixin media-hover {
 	@media (hover: hover) {
 		@content;
 	}
 }
 
+// touch only
+@mixin media-touch {
+	@media (hover: none) {
+		@content;
+	}
+}
+
+// landscape orientation
+@mixin landscape {
+	@media (min-aspect-ratio: 1/1) {
+		@content;
+	}
+}
+
+// portarait orientation
+@mixin portrait {
+	@media (max-aspect-ratio: 1/1) {
+		@content;
+	}
+}
+
+
+// OTHER
+// properties
+
+@mixin full-height {
+	min-height: 100vh;
+	min-height: 100dvh;
+}
+
+// position absolute full size
+@mixin abs-full() {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+//octagon
+@mixin clip-path-polygon($n) {
+	clip-path: polygon(0 $n,
+			$n 0,
+			calc(100% - $n) 0,
+			100% $n,
+			100% calc(100% - $n),
+			calc(100% - $n) 100%,
+			$n 100%,
+			0 calc(100% - $n));
+}

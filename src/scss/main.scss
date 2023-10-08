@@ -1,8 +1,6 @@
-@import "meta/_meta.scss";
-@import "_resets.scss";
-@import "_fonts.scss";
+@import "./meta/_meta.scss";
+@import "./base/_base.scss";
 
-// BASE
-@import "_general.scss";
+// @import "./main/**/*";
 
 // @import "_debug.scss";
