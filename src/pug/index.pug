@@ -1,37 +1,48 @@
 extends _layout/base.pug
 
 block meta
-	- config.page.title = 'Home page';
+	- config.page.title = 'Lorem ipsum';
 	- config.page.description = 'Home page description';
 
 block body
 	//- cut line (remove all above, include this line)
 	style.
+		:root {
+			--gradient: 135deg, #e6e6e6, var(--color-fg);
+		}
+
+		body {
+			
+		}
+
 		h1 {
 			position:absolute;
+			z-index: 1;
 			top:50%;
 			left:50%;
 			transform:translate(-50%, -50%);
 			text-align:center;
-			font-size:3rem;
+			font-size:calc(0.7rem + 3.6vmax);
 			font-family:monospace;
 			font-style:italic;
-			line-height:1;
 			display:flex;
-			justify-content:center;
-			gap:.5em;
+			text-transform:uppercase;
+			user-select:none;
+
+			opacity:0.3;
 		}
 		h1 span {
-			padding:0 .14em;
+			padding:0 .3em;
 			flex:0 0 .5em;
 			text-shadow:-1px -1px 1px #000;
+			border-radius:2px;
 		}
-		h1 span:first-child {
+		h1 span:nth-child(odd) {
 			color:var(--color-bg);
-			background:var(--color-fg);
+			background:linear-gradient(var(--gradient));
+			text-shadow: 1px 1px 1px #fff;
 		}
+		
 	h1
-		each word in config.title.split(' ')
+		each word in config.page.title.split(' ')
 			span #{word}
-
-	div #{srcTree}

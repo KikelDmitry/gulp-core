@@ -2,7 +2,7 @@
 
 import { config, globs } from '../config.js';
 import { src, dest } from '../gulp.js';
-import dartSass from 'sass';
+import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
 import sourcemaps from 'gulp-sourcemaps';
