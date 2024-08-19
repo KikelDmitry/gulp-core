@@ -5,7 +5,7 @@ import { src, dest } from '../gulp.js';
 import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 import imageminPngquant from 'imagemin-pngquant';
 
-export const images = async () => {
+export const images = () => {
 	return src(globs.images)
 		.pipe(imagemin([
 			gifsicle({ interlaced: true }),
@@ -13,13 +13,19 @@ export const images = async () => {
 			optipng({ optimizationLevel: 5 }),
 			svgo({
 				plugins: [
-					{ removeViewBox: true },
-					{ cleanupIDs: false }
+					{ 
+						name:'removeViewBox',
+						active: true,
+					},
+					{
+						name: 'cleanupIDs',
+						active: true,
+					},
 				]
 			}),
-			imageminPngquant({
-				strip: true,
-			}),
+			// imageminPngquant({
+			// 	strip: true,
+			// }),
 		], {
 			verbose: true
 		}))
