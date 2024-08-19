@@ -18,6 +18,19 @@ mixin svg(classes, anchor, title, desc, attrObj)
 			}
 		)
 
+//- embeding picture tag for response layout
+mixin picture(classes, defaultExtension, pathToDefault)
+	picture(class=classes)
+		source(src=`${pathToDefault}.avif` type="image/avif")
+		source(src=`${pathToDefault}.webp` type="image/webp")
+		img(src=`${pathToDefault}.${defaultExtension}` class=`${classes}__img`)
+	//- example
+		+picture(
+			'my-picture',
+			'png',
+			'/img/photos/myPhoto' without extension
+		)
+
 //- github corner
 mixin githubCorner(pos="absolute", color="black", link)
 	a.github-corner(href=link aria-label="View source on GitHub")

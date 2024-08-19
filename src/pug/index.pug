@@ -46,3 +46,8 @@ block body
 	h1
 		each word in config.page.title.split(' ')
 			span #{word}
+	+picture(
+		'test-picture',
+		'png',
+		'/img/1'
+	)

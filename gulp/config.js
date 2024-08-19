@@ -14,7 +14,8 @@ export const globs = {
 	js: config.src + 'js/**/*.js',
 	images: [
 		config.src + 'img/**/*.{png,jpg,jpeg,svg,gif}',
-		'!' + config.src + 'img/sprite/**/*.svg'
+		'!' + config.src + 'img/sprite/**/*.svg',
+		'!' + config.src + 'img/icons/**/*.*',
 	],
 	sprite: config.src + 'img/sprite/**/*.svg',
 	fonts: config.src + 'fonts/**/*.*',
