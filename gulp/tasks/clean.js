@@ -1,6 +1,6 @@
 import { config } from '../config.js';
-import del from 'del';
+import { deleteAsync } from 'del';
 
 export const clean = () => {
-	return del(config.dest + '**', { force: true })
+	return deleteAsync(config.dest + '**', { force: true })
 };
