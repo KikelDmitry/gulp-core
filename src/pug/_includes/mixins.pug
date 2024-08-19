@@ -19,16 +19,18 @@ mixin svg(classes, anchor, title, desc, attrObj)
 		)
 
 //- embeding picture tag for response layout
-mixin picture(classes, defaultExtension, pathToDefault)
+mixin picture(classes, defaultExtension, pathToDefault, alt)
+	- const fullPath = `${config.imgPath}${pathToDefault}`;
 	picture(class=classes)
-		source(src=`${pathToDefault}.avif` type="image/avif")
-		source(src=`${pathToDefault}.webp` type="image/webp")
-		img(src=`${pathToDefault}.${defaultExtension}` class=`${classes}__img`)
+		source(srcset=`${fullPath}.avif` type="image/avif")
+		source(srcset=`${fullPath}.webp` type="image/webp")
+		img(src=`${fullPath}.${defaultExtension}` class=`${classes}__img` alt=alt)
 	//- example
 		+picture(
 			'my-picture',
 			'png',
-			'/img/photos/myPhoto' without extension
+			'photos/myPhoto', without extension
+			'lazy from jumping over the log'
 		)
 
 //- github corner

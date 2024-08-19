@@ -41,7 +41,7 @@ export const images = () => {
 					{
 						format: 'avif',
 					}
-				]
+				],
 			}
 		))
 		.pipe(dest(config.dest + 'img'))
