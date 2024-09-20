@@ -1,0 +1,28 @@
+{
+    "tabWidth": 2,
+    "useTabs": true,
+    "printWidth": 120,
+    "singleQuote": false,
+    "plugins": ["@prettier/plugin-pug"],
+    "overrides": [
+        {
+            "files": "*.pug",
+            "options": {
+                "parser": "pug",
+                "pugClassLocation": "before-attributes",
+                "pugAttributeSeparator": "none",
+                "pugWrapAttributesThreshold": 2,
+                "pugEmptyAttributes": "none",
+                "pugPreserveAttributeBrackets": false,
+                "pugSortAttributes": "asc",
+                "pugSortAttributesBeginning": ["src", "type", "href"]
+            }
+        },
+        {
+            "files": "*.scss",
+            "options": {
+                "parser": "scss"
+            }
+        }
+    ]
+}

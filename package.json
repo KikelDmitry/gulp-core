@@ -13,6 +13,7 @@
 	"private": true,
 	"license": "ISC",
 	"devDependencies": {
+		"@prettier/plugin-pug": "^3.1.0",
 		"autoprefixer": "^10.4.16",
 		"browser-sync": "^3.0.2",
 		"del": "^7.1.0",
