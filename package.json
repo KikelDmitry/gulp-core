@@ -3,7 +3,8 @@
 	"name": "gulp-template",
 	"scripts": {
 		"dev": "gulp dev",
-		"build": "gulp build"
+		"build": "gulp build",
+    "prettier": "prettier ./**/*.{pug,scss,js} --write"
 	},
 	"repository": {
 		"type": "git",

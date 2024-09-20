@@ -42,7 +42,6 @@
 	}
 }
 
-
 // OTHER
 // properties
 
@@ -62,12 +61,14 @@
 
 //octagon
 @mixin clip-path-polygon($n) {
-	clip-path: polygon(0 $n,
-			$n 0,
-			calc(100% - $n) 0,
-			100% $n,
-			100% calc(100% - $n),
-			calc(100% - $n) 100%,
-			$n 100%,
-			0 calc(100% - $n));
+	clip-path: polygon(
+		0 $n,
+		$n 0,
+		calc(100% - $n) 0,
+		100% $n,
+		100% calc(100% - $n),
+		calc(100% - $n) 100%,
+		$n 100%,
+		0 calc(100% - $n)
+	);
 }

@@ -7,13 +7,15 @@ import browserSync from 'browser-sync';
 
 export const pug = () => {
 	return src(globs.pug)
-		.pipe(gulpPug({
-			pretty: true,
-			basedir: './',
-			locals: {
-				// globalPugVariables
-			}
-		}))
+		.pipe(
+			gulpPug({
+				pretty: true,
+				basedir: './',
+				locals: {
+					// globalPugVariables
+				},
+			}),
+		)
 		.pipe(dest(config.dest))
-		.pipe(browserSync.stream())
+		.pipe(browserSync.stream());
 };

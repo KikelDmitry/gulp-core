@@ -1,8 +1,8 @@
 extends _layout/base.pug
 
 block meta
-	- config.page.title = 'Lorem ipsum';
-	- config.page.description = 'Home page description';
+	- config.page.title = "Lorem ipsum";
+	- config.page.description = "Home page description";
 
 block body
 	//- cut line (remove all above, include this line)
@@ -12,37 +12,36 @@ block body
 		}
 
 		body {
-			
 		}
 
 		h1 {
-			position:absolute;
+			position: absolute;
 			z-index: 1;
-			top:50%;
-			left:50%;
-			transform:translate(-50%, -50%);
-			text-align:center;
-			font-size:calc(0.7rem + 3.6vmax);
-			font-family:monospace;
-			font-style:italic;
-			display:flex;
-			text-transform:uppercase;
-			user-select:none;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			font-size: calc(0.7rem + 3.6vmax);
+			font-family: monospace;
+			font-style: italic;
+			display: flex;
+			text-transform: uppercase;
+			user-select: none;
 
-			opacity:0.3;
+			opacity: 0.3;
 		}
 		h1 span {
-			padding:0 .3em;
-			flex:0 0 .5em;
-			text-shadow:-1px -1px 1px #000;
-			border-radius:2px;
+			padding: 0 0.3em;
+			flex: 0 0 0.5em;
+			text-shadow: -1px -1px 1px #000;
+			border-radius: 2px;
 		}
 		h1 span:nth-child(odd) {
-			color:var(--color-bg);
-			background:linear-gradient(var(--gradient));
+			color: var(--color-bg);
+			background: linear-gradient(var(--gradient));
 			text-shadow: 1px 1px 1px #fff;
 		}
-		
+
 	h1
 		each word in config.page.title.split(' ')
-			span #{word}
+			span #{ word }

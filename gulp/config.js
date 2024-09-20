@@ -6,10 +6,7 @@ export const config = {
 	dest: './dest/',
 };
 export const globs = {
-	pug: [
-		config.src + 'pug/**/*.pug',
-		'!' + config.src + 'pug/**/_*/*.pug',
-	],
+	pug: [config.src + 'pug/**/*.pug', '!' + config.src + 'pug/**/_*/*.pug'],
 	scss: config.src + 'scss/main.scss',
 	js: config.src + 'js/**/*.js',
 	images: [
@@ -19,4 +16,4 @@ export const globs = {
 	],
 	sprite: config.src + 'img/sprite/**/*.svg',
 	fonts: config.src + 'fonts/**/*.*',
-}
+};

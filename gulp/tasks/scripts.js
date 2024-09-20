@@ -9,11 +9,13 @@ import browserSync from 'browser-sync';
 export const scripts = () => {
 	return src(globs.js)
 		.pipe(concat('bundle.js'))
-		.pipe(minify({
-			ext: {
-				min: '.min.js'
-			}
-		}))
+		.pipe(
+			minify({
+				ext: {
+					min: '.min.js',
+				},
+			}),
+		)
 		.pipe(dest(config.dest + 'js'))
-		.pipe(browserSync.stream())
+		.pipe(browserSync.stream());
 };

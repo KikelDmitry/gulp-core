@@ -17,28 +17,26 @@ export const scss = {
 		return src(globs.scss)
 			.pipe(sassGlob())
 			.pipe(sourcemaps.init())
-			.pipe(sass({
-				outputStyle: 'expanded'
-			}))
+			.pipe(
+				sass({
+					outputStyle: 'expanded',
+				}),
+			)
 			.on('error', sass.logError)
-			.pipe(postcss([
-				autoprefixer(),
-			]))
+			.pipe(postcss([autoprefixer()]))
 			.pipe(sourcemaps.write('.'))
 			.pipe(dest(config.dest + 'css'))
-			.pipe(browserSync.stream())
-			
-		},
-		prod() {
-			return src(globs.scss)
-				.pipe(sassGlob())
-				.pipe(sass({
-					outputStyle: 'expanded'
-				}))
-				.pipe(postcss([
-					autoprefixer(),
-					csso()
-				]))
-				.pipe(dest(config.dest + 'css'))			
-	}
-}
+			.pipe(browserSync.stream());
+	},
+	prod() {
+		return src(globs.scss)
+			.pipe(sassGlob())
+			.pipe(
+				sass({
+					outputStyle: 'expanded',
+				}),
+			)
+			.pipe(postcss([autoprefixer(), csso()]))
+			.pipe(dest(config.dest + 'css'));
+	},
+};

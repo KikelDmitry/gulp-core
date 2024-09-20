@@ -10,5 +10,5 @@ export const bs = () => {
 			directory: true,
 		},
 		notify: false,
-	})
+	});
 };
