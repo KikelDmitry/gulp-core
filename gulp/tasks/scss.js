@@ -23,7 +23,6 @@ export const scss = {
 			.on('error', sass.logError)
 			.pipe(postcss([
 				autoprefixer(),
-				csso()
 			]))
 			.pipe(sourcemaps.write('.'))
 			.pipe(dest(config.dest + 'css'))
@@ -36,7 +35,6 @@ export const scss = {
 				.pipe(sass({
 					outputStyle: 'expanded'
 				}))
-				.on('error', sass.logError)
 				.pipe(postcss([
 					autoprefixer(),
 					csso()
