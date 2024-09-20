@@ -23,6 +23,12 @@
             "options": {
                 "parser": "scss"
             }
+        },
+        {
+            "files": ["*.js", "*.mjs"],
+            "options": {
+                "singleQuote": true
+            }
         }
     ]
 }
