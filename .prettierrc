@@ -27,6 +27,7 @@
         {
             "files": ["*.js", "*.mjs"],
             "options": {
+                "parser": "babel",
                 "singleQuote": true
             }
         }
