@@ -1,6 +1,7 @@
 {
 	"main": "gulpfile.js",
-	"name": "gulp-template",
+	"name": "gulp-core",
+  "version": "1.0.0",
 	"scripts": {
 		"dev": "gulp dev",
 		"build": "gulp build",
@@ -8,10 +9,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:KikelDmitry/gulp-template.git"
+		"url": "git+ssh://git@github.com:KikelDmitry/gulp-core.git"
 	},
 	"type": "module",
-	"private": true,
+	"private": false,
 	"license": "ISC",
 	"devDependencies": {
 		"@prettier/plugin-pug": "^3.1.0",
