@@ -1,11 +1,11 @@
 {
 	"main": "gulpfile.js",
 	"name": "gulp-core",
-  "version": "1.0.0",
+	"version": "1.0.0",
 	"scripts": {
 		"dev": "gulp dev",
 		"build": "gulp build",
-    "prettier": "prettier ./**/*.{pug,scss,js} --write"
+		"prettier": "prettier ./**/*.{pug,scss,js} --write"
 	},
 	"repository": {
 		"type": "git",
@@ -14,16 +14,16 @@
 	"type": "module",
 	"private": false,
 	"license": "ISC",
-  "author": {
-    "name": "Kikel Dmitry",
-    "email": "kikeldmitry@gmail.com",
-    "url": "https://kikel.net/"
-  },
+	"author": {
+		"name": "Kikel Dmitry",
+		"email": "kikeldmitry@gmail.com",
+		"url": "https://kikel.net/"
+	},
 	"devDependencies": {
 		"@prettier/plugin-pug": "^3.1.0",
 		"autoprefixer": "^10.4.16",
 		"browser-sync": "^3.0.2",
-		"del": "^7.1.0",
+		"del": "^8.0.0",
 		"gulp": "^5.0.0",
 		"gulp-cheerio": "^1.0.0",
 		"gulp-concat": "^2.6.1",
@@ -31,7 +31,7 @@
 		"gulp-minify": "^3.1.0",
 		"gulp-postcss": "^10.0.0",
 		"gulp-pug": "^5.0.0",
-		"gulp-sass": "^5.1.0",
+		"gulp-sass": "^6.0.0",
 		"gulp-sass-glob": "^1.1.0",
 		"gulp-sharp-responsive": "^0.4.1",
 		"gulp-sourcemaps": "^3.0.0",
