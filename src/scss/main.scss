@@ -1,6 +1,6 @@
-@import "./meta/_meta.scss";
-@import "./base/_base.scss";
+@use "./meta/_meta.scss";
+@use "./base/_base.scss";
 
-@import "./main/**/*";
+// @use "./main/**/*.scss";
 
-// @import "_debug.scss";
+// @use "_debug.scss";

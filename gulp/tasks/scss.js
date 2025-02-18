@@ -5,7 +5,7 @@ import { src, dest } from '../gulp.js';
 import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
-import sassGlob from 'gulp-sass-glob';
+import bulkSass from 'gulp-sass-glob-use-forward';
 import sourcemaps from 'gulp-sourcemaps';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
@@ -15,13 +15,9 @@ import browserSync from 'browser-sync';
 export const scss = {
 	dev() {
 		return src(globs.scss)
-			.pipe(sassGlob())
+			.pipe(bulkSass())
 			.pipe(sourcemaps.init())
-			.pipe(
-				sass({
-					outputStyle: 'expanded',
-				}),
-			)
+			.pipe(sass({ outputStyle: 'expanded' }))
 			.on('error', sass.logError)
 			.pipe(postcss([autoprefixer()]))
 			.pipe(sourcemaps.write('.'))
@@ -30,12 +26,8 @@ export const scss = {
 	},
 	prod() {
 		return src(globs.scss)
-			.pipe(sassGlob())
-			.pipe(
-				sass({
-					outputStyle: 'expanded',
-				}),
-			)
+			.pipe(bulkSass())
+			.pipe(sass({ outputStyle: 'expanded' }))
 			.pipe(postcss([autoprefixer(), csso()]))
 			.pipe(dest(config.dest + 'css'));
 	},

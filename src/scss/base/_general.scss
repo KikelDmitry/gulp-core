@@ -1,6 +1,8 @@
+@use "../meta/colors";
+
 :root {
-	--color-bg: #{$color-bg};
-	--color-fg: #{$color-fg};
+	--color-bg: #{colors.$color-bg};
+	--color-fg: #{colors.$color-fg};
 }
 body {
 	min-width: 280px;
