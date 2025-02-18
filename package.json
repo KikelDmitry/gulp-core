@@ -9,7 +9,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com:KikelDmitry/gulp-core.git"
+		"url": "git+git@github.com:KikelDmitry/gulp-core.git"
 	},
 	"type": "module",
 	"private": false,
@@ -22,7 +22,7 @@
 	"devDependencies": {
 		"@prettier/plugin-pug": "^3.1.0",
 		"autoprefixer": "^10.4.16",
-		"browser-sync": "^3.0.2",
+		"browser-sync": "^3.0.3",
 		"del": "^8.0.0",
 		"gulp": "^5.0.0",
 		"gulp-cheerio": "^1.0.0",
@@ -40,7 +40,7 @@
 		"imagemin-pngquant": "^10.0.0",
 		"postcss": "^8.4.31",
 		"postcss-csso": "^6.0.1",
-		"sass": "^1.77.8"
+		"sass": "^1.85.0"
 	},
 	"browserslist": [
 		"last 2 versions",
