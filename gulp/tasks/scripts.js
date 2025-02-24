@@ -16,6 +16,6 @@ export const scripts = () => {
 				},
 			}),
 		)
-		.pipe(dest(config.dest + 'js'))
+		.pipe(dest(`${config.dest}js`))
 		.pipe(browserSync.stream());
 };

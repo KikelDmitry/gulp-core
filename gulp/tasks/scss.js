@@ -21,7 +21,7 @@ export const scss = {
 			.on('error', sass.logError)
 			.pipe(postcss([autoprefixer()]))
 			.pipe(sourcemaps.write('.'))
-			.pipe(dest(config.dest + 'css'))
+			.pipe(dest(`${config.dest}css`))
 			.pipe(browserSync.stream());
 	},
 	prod() {
@@ -29,6 +29,6 @@ export const scss = {
 			.pipe(bulkSass())
 			.pipe(sass({ outputStyle: 'expanded' }))
 			.pipe(postcss([autoprefixer(), csso()]))
-			.pipe(dest(config.dest + 'css'));
+			.pipe(dest(`${config.dest}css`));
 	},
 };

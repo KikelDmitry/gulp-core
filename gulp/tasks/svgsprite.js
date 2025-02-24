@@ -32,5 +32,5 @@ export const svgsprite = () => {
 				},
 			}),
 		)
-		.pipe(dest(config.dest + 'img'));
+		.pipe(dest(`${config.dest}img`));
 };

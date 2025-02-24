@@ -48,5 +48,5 @@ export const images = () => {
 				],
 			}),
 		)
-		.pipe(dest(config.dest + 'img'));
+		.pipe(dest(`${config.dest}img`));
 };
