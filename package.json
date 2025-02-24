@@ -20,8 +20,8 @@
 		"url": "https://kikel.net/"
 	},
 	"devDependencies": {
-		"@prettier/plugin-pug": "^3.1.0",
-		"autoprefixer": "^10.4.16",
+		"@prettier/plugin-pug": "^3.2.1",
+		"autoprefixer": "^10.4.20",
 		"browser-sync": "^3.0.3",
 		"del": "^8.0.0",
 		"gulp": "^5.0.0",
@@ -38,7 +38,7 @@
 		"gulp-svg-sprite": "^2.0.3",
 		"gulp-svgmin": "^4.1.0",
 		"imagemin-pngquant": "^10.0.0",
-		"postcss": "^8.4.31",
+		"postcss": "^8.5.3",
 		"postcss-csso": "^6.0.1",
 		"sass": "^1.85.0"
 	},
