@@ -40,6 +40,7 @@
 		"imagemin-pngquant": "^10.0.0",
 		"postcss": "^8.5.3",
 		"postcss-csso": "^6.0.1",
+		"prettier": "^3.5.2",
 		"sass": "^1.85.0"
 	},
 	"browserslist": [
